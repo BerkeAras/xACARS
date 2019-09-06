@@ -65,7 +65,8 @@ def loop(): # Check for updates in a loop
             print(e)
 
         time.sleep(delay)
-
+        getNewDelay()
+        
         if stop == True:
             break
 
