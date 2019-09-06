@@ -19,8 +19,31 @@ import os
 # Set variables
 stop = False
 pirepID = ""
+delay = 5
 
 # Define functions
+def getNewDelay(): # Updates the delay based on current data
+    global delay
+    ias = float(read("IAS"))
+    vs = float(read("vs"))
+
+    if ias <= 150:
+        delay = 5
+    elif ias > 150 and ias <= 200:
+        delay = 7
+    elif ias > 200 and ias <= 250:
+        delay = 10
+    else:
+        if vs < 0:
+            vs = vs - vs - vs
+
+        if vs >= 400 and ias > 250:
+            delay = 15
+        elif vs < 400 and ias > 250:
+            delay = 30
+        else:
+            delay = 5
+
 def read(x): # Read data from the input folder
     file = open(str(os.getenv('APPDATA')) + '/xACARS/input/' + x + '.txt', "r")
     toreturn = file.read()
@@ -44,7 +67,8 @@ def loop(): # Check for updates in a loop
         except Exception as e:
             print(e)
 
-        time.sleep(5)
+        time.sleep(delay)
+        getNewDelay()
 
         if stop == True:
             break
