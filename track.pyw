@@ -67,7 +67,7 @@ def posUpdate(): # Update input folder with latest data from FSUIPC/XPUIPC.
     writeData('gs', gs)
 
     # Indicated Airspeed
-    ias = pyuipc.read([(0x02BC, "d")]) # If "d" fails, try "u". If "u" fails, question life.
+    ias = pyuipc.read([(0x02BC, "d")])
     ias = float(ias[0])
     ias = ias / 128
     writeData("IAS", ias)
