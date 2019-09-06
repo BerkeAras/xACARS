@@ -32,25 +32,42 @@ def writeData(x, y): # Write data to a text file in the input folder. Creates fi
     file.close()
 
 def posUpdate(): # Update input folder with latest data from FSUIPC/XPUIPC.
+    # Latitude
     lat = pyuipc.read([(0x6010, "f")])
     lat = float(lat[0])
     writeData('lat', lat)
+
+    # Longitude
     long = pyuipc.read([(0x6018, "f")])
     long = float(long[0])
     writeData('lon', long)
+
+    # Heading
     hdg = pyuipc.read([(0x6040, "f")])
     hdg = float(hdg[0])
     hdg = hdg*180/math.pi
     writeData('heading', hdg)
+
+    # Veritcal Speed
     vs = pyuipc.read([(0x0842, "h")])
     vs = float(vs[0])
     vs = vs * -3.28084
     writeData('vs', vs)
+
+    # Altitude
     alt = pyuipc.read([(0x6020, "f")])
     alt = float(alt[0])
     alt = alt*3.28084
     writeData('altitude', alt)
+
+    # Ground Speed
     gs = pyuipc.read([(0x6030, "f")])
     gs = float(gs[0])
     gs = gs*3600/1852
     writeData('gs', gs)
+
+    # Indicated Airspeed
+    ias = pyuipc.read([(0x02BC, "d")]) # If "d" fails, try "u". If "u" fails, question life.
+    ias = float(ias[0])
+    ias = ias / 128
+    writeData("IAS", ias)
