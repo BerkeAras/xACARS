@@ -38,8 +38,7 @@ def posUpdate(): # Update input folder with latest data from FSUIPC/XPUIPC.
     long = pyuipc.read([(0x6018, "f")])
     long = float(long[0])
     writeData('lon', long)
-    #hdg = pyuipc.read([(0x6038, "f")]) True Heading
-    hdg = pyuipc.read([(0x6040, "f")]) # Magnetic Heading
+    hdg = pyuipc.read([(0x6040, "f")])
     hdg = float(hdg[0])
     hdg = hdg*180/math.pi
     writeData('heading', hdg)
@@ -55,4 +54,3 @@ def posUpdate(): # Update input folder with latest data from FSUIPC/XPUIPC.
     gs = float(gs[0])
     gs = gs*3600/1852
     writeData('gs', gs)
-    # GS, ALT
