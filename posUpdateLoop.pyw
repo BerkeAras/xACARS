@@ -36,16 +36,10 @@ def loop(): # Check for updates in a loop
         if config.useFSUIPC == True: track.beginTrack()
         try:
             if config.useFSUIPC == True: track.posUpdate()
-
-            
             exportdata = {"lat": read('lat'),"lon": read('lon'),"heading": read('heading'),"altitude": read('altitude'),"vs": read('vs'),"gs": read('gs')}
             exportdata = {"positions": [exportdata]}
-
             exportdata = json.dumps(exportdata)
-            
             web.post(config.website + '/api/pireps/' + pirepID + '/acars/position', exportdata)
-
-            print(exportdata)
         except Exception as e:
             print(e)
 
