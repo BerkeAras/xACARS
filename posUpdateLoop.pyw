@@ -22,7 +22,6 @@ stop = False
 pirepID = ""
 
 # Define functions
-
 def read(x): # Read data from the input folder
     file = open(str(os.getenv('APPDATA')) + '/xACARS/input/' + x + '.txt', "r")
     toreturn = file.read()
