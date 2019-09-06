@@ -19,7 +19,7 @@ def beginTrack(): # Opens connection to FSUIPC/XPUIPC, and returns if it was suc
         pyuipc.open(0)
         return "Can Connect"
     except pyuipc.FSUIPCException as e:
-        return "FSUIPC/XPUIPC ERROR: " + str(e.errorCode)
+        return "FSUIPC ERROR: " + str(e.errorCode)
     except Exception as e:
         return "ERROR: " + str(e)
 

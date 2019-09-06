@@ -38,7 +38,7 @@ def Log(text):
 
 def connectionTest():
     Log('#######################################################') 
-    Log('Attempting to connect to FSUIPC/XPUIPC...')
+    Log('Attempting to connect to FSUIPC...')
     track.endTrack()
     isSuccess = track.beginTrack()
     if isSuccess == "Can Connect":
@@ -332,6 +332,6 @@ vaMenu.add_command(label='List, Edit & Add Airlines', command=editAirlines)
 helpMenu = tk.Menu(menu, tearoff=False)
 menu.add_cascade(label='Help', menu=helpMenu) 
 helpMenu.add_command(label='Report a Issue', command=issue)
-helpMenu.add_command(label='Simulator Connection Test', command=connectionTest)
+helpMenu.add_command(label='Simulator Connection Test (FSX & P3D)', command=connectionTest)
 helpMenu.add_command(label='Wiki', command=openWiki)
 window.mainloop()
