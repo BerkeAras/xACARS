@@ -269,20 +269,24 @@ def checkForUpdates():
     Log("Checking for updates..")
 
     data = web.get('https://raw.githubusercontent.com/slimit75/xACARS/update-system/updates.json')
-    data = json.loads(data)
+    
+    try:
+        data = json.loads(data)
 
-    if config.getPreRel == True:
-        if str(data["latestBeta"]) == config.version:
-            Log("No updates avalible.")
+        if config.getPreRel == True:
+            if str(data["latestBeta"]) == config.version:
+                Log("No updates avalible.")
+            else:
+                Log("There is a update avalible, please get it from")
+                Log("https://github.com/slimit75/xACARS/releases")
         else:
-            Log("There is a update avalible, please get it from")
-            Log("https://github.com/slimit75/xACARS/releases")
-    else:
-        if str(data["latestStable"]) == config.version:
-            Log("No updates avalible.")
-        else:
-            Log("There is a update avalible, please get it from")
-            Log("https://github.com/slimit75/xACARS/releases")
+            if str(data["latestStable"]) == config.version:
+                Log("No updates avalible.")
+            else:
+                Log("There is a update avalible, please get it from")
+                Log("https://github.com/slimit75/xACARS/releases")
+    except Exception:
+        Log("ERROR " + data)
 
 
 # Draw window
