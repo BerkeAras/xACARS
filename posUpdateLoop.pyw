@@ -11,7 +11,6 @@
 # Import libarys
 import time
 import threading
-import track
 import json
 import web
 import config
@@ -33,11 +32,7 @@ def read(x): # Read data from the input folder
 def loop(): # Check for updates in a loop
     global pirepID
     while True:
-        if config.useFSUIPC == True: track.beginTrack()
         try:
-            if config.useFSUIPC == True: track.posUpdate()
-
-            
             exportdata = {"lat": read('lat'),"lon": read('lon'),"heading": read('heading'),"altitude": read('altitude'),"vs": read('vs'),"gs": read('gs')}
             exportdata = {"positions": [exportdata]}
 
@@ -65,4 +60,3 @@ def stopLoop(): # Stops the loop in the 'new' thread
     global thread
     global stop
     stop = True
-    track.endTrack()

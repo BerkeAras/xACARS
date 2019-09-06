@@ -16,7 +16,6 @@ import os
 
 # Set Variables
 listOfBool = ["", "True", "False"]
-inputOptions = ["", "FSUIPC (FSX & P3D)", "FlyWithLua (X-Plane)"]
 restoreToDefault = False
 
 # Define functions
@@ -42,12 +41,6 @@ def drawWindow(x):
     window = tk.Tk()
     window.iconbitmap('Favicon.ico')
 
-    fsuipc = tk.StringVar(window)
-    if config.useFSUIPC == True:
-        fsuipc.set(str("FSUIPC (FSX & P3D)"))
-    else:
-        fsuipc.set(str("FlyWithLua (X-Plane)"))
-
     darkMode = tk.StringVar(window)
     darkMode.set(str(config.darkMode))
 
@@ -66,28 +59,24 @@ def drawWindow(x):
     tk.Label(window, text='Changes require restarting the program.').grid(row=1, columnspan=1, sticky="w")
     ttk.Separator(window, orient=tk.HORIZONTAL).grid(row=2, columnspan=4, sticky="we")
 
-    tk.Label(window, text='Input Method: ').grid(row=3, column=0, sticky="e")
-    ttk.OptionMenu(window, fsuipc, *inputOptions).grid(row=3, column=1, sticky="we")
-    tk.Label(window, text='Turn this off if you want an external program to write to the files in the input folder.').grid(row=3, column=3, sticky="w")
+    tk.Label(window, text='Dark Mode: ').grid(row=3, column=0, sticky="e")
+    ttk.OptionMenu(window, darkMode, *listOfBool).grid(row=3, column=1, sticky="we")
+    tk.Label(window, text='This will enable dark mode, in the future.').grid(row=3, column=3, sticky="w")
 
-    tk.Label(window, text='Dark Mode: ').grid(row=4, column=0, sticky="e")
-    ttk.OptionMenu(window, darkMode, *listOfBool).grid(row=4, column=1, sticky="we")
-    tk.Label(window, text='This will enable dark mode, in the future.').grid(row=4, column=3, sticky="w")
+    tk.Label(window, text='Check for updates on startup: ').grid(row=4, column=0, sticky="e")
+    ttk.OptionMenu(window, checkUpdate, *listOfBool).grid(row=4, column=1, sticky="we")
+    tk.Label(window, text='Turn this off if you want to manually check for updates.').grid(row=4, column=3, sticky="w")
 
-    tk.Label(window, text='Check for updates on startup: ').grid(row=5, column=0, sticky="e")
-    ttk.OptionMenu(window, checkUpdate, *listOfBool).grid(row=5, column=1, sticky="we")
-    tk.Label(window, text='Turn this off if you want to manually check for updates.').grid(row=5, column=3, sticky="w")
+    tk.Label(window, text='Download pre-release versions: ').grid(row=5, column=0, sticky="e")
+    ttk.OptionMenu(window, getPreRel, *listOfBool).grid(row=5, column=1, sticky="we")
+    tk.Label(window, text='This may be unstable.').grid(row=5, column=3, sticky="w")
 
-    tk.Label(window, text='Download pre-release versions: ').grid(row=6, column=0, sticky="e")
-    ttk.OptionMenu(window, getPreRel, *listOfBool).grid(row=6, column=1, sticky="we")
-    tk.Label(window, text='This may be unstable.').grid(row=6, column=3, sticky="w")
+    tk.Label(window, text='Startup Login Message: ').grid(row=6, column=0, sticky="e")
+    ttk.OptionMenu(window, startupMessage, *listOfBool).grid(row=6, column=1, sticky="we")
+    tk.Label(window, text='Disables the startup message that tells you how to login.').grid(row=6, column=3, sticky="w")
 
-    tk.Label(window, text='Startup Login Message: ').grid(row=7, column=0, sticky="e")
-    ttk.OptionMenu(window, startupMessage, *listOfBool).grid(row=7, column=1, sticky="we")
-    tk.Label(window, text='Disables the startup message that tells you how to login.').grid(row=7, column=3, sticky="w")
-
-    ttk.Button(window, text='Restore to defaults', command=restoreToDefaults).grid(row=8, columnspan=4, sticky="we")
-    ttk.Button(window, text='Save & Exit', command=window.quit).grid(row=9, columnspan=4, sticky="we")
+    ttk.Button(window, text='Restore to defaults', command=restoreToDefaults).grid(row=7, columnspan=4, sticky="we")
+    ttk.Button(window, text='Save & Exit', command=window.quit).grid(row=8, columnspan=4, sticky="we")
     window.mainloop()
 
     # Post exit script - saves file
@@ -96,10 +85,6 @@ def drawWindow(x):
     if restoreToDefault == False:
         file = open("settings.ini", 'w')
         file.write("[DEFAULT]\n")
-        if fsuipc.get() == "FSUIPC (FSX & P3D)":
-            file.write("fsuipc = True\n")
-        else:
-            file.write("fsuipc = False\n")
         file.write("darkMode = " + darkMode.get() + "\n")
         file.write("checkForUpdatesOnStart = " + checkUpdate.get() + "\n")
         file.write("getPreReleaseVersions = " + getPreRel.get() + "\n")

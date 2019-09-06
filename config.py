@@ -25,7 +25,6 @@ if os.path.exists('airlines.ini') == False:
 if os.path.exists('settings.ini') == False:
     file = open("settings.ini", 'w')
     file.write("[DEFAULT]\n")
-    file.write("fsuipc = True\n")
     file.write("darkMode = False\n")
     file.write("checkForUpdatesOnStart = True\n")
     file.write("getPreReleaseVersions = False\n")
@@ -102,7 +101,6 @@ reloadList()
 # Read settings
 config = configparser.ConfigParser() 
 config.read("settings.ini")
-useFSUIPC = config["DEFAULT"]["fsuipc"]
 darkMode = config["DEFAULT"]["darkMode"]
 checkUpdate = config["DEFAULT"]["checkForUpdatesOnStart"]
 getPreRel = config["DEFAULT"]["getPreReleaseVersions"]
@@ -117,7 +115,6 @@ except Exception:
     loginMessage = True
 
 # Change the "True/False" variables to a boolean
-useFSUIPC = stringToBool(useFSUIPC)
 darkMode = stringToBool(darkMode)
 checkUpdate = stringToBool(checkUpdate)
 getPreRel = stringToBool(getPreRel)
