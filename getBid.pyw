@@ -4,7 +4,7 @@
 #                                           #
 # This file manages any bids made on the    #
 # virtual airlines website. This window     #
-# will be removed in the near future.       #
+# will be moved to main.pyw soon.           #
 # ----------------------------------------- #
 
 # Import libarys

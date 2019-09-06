@@ -2,8 +2,8 @@
 # login.pyw                                 #
 # Speed_Limit75                             #
 #                                           #
-# As the name suggests, this file manages   #
-# logging into the virtual airline.         #
+# This file manages the login to the users  #
+# virtual airline.                          #
 # ----------------------------------------- #
 
 # Import libarys
@@ -15,7 +15,7 @@ import web
 import json
 import listAirlines
 
-# Define functions
+# Define variables
 List = config.list
 websites = config.websites
 savedAPIKeys = config.savedAPIKeys

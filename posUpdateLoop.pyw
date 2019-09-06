@@ -22,7 +22,8 @@ stop = False
 pirepID = ""
 
 # Define functions
-def read(x):
+
+def read(x): # Read data from the input folder
     file = open(str(os.getenv('APPDATA')) + '/xACARS/input/' + x + '.txt', "r")
     toreturn = file.read()
     print(file.read())
@@ -30,7 +31,7 @@ def read(x):
     print(toreturn)
     return toreturn
 
-def loop():
+def loop(): # Check for updates in a loop
     global pirepID
     while True:
         if config.useFSUIPC == True: track.beginTrack()
@@ -54,14 +55,14 @@ def loop():
         if stop == True:
             break
 
-def startLoop(x):
+def startLoop(x): # Starts the loop in a new thread
     global thread
     global pirepID
     pirepID = x
     thread = threading.Thread(target=loop)
     thread.start()
 
-def stopLoop():
+def stopLoop(): # Stops the loop in the 'new' thread
     global thread
     global stop
     stop = True

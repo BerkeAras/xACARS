@@ -35,18 +35,16 @@ if os.path.exists('settings.ini') == False:
 # Set static variables
 version = "v1.0.0-alpha3"
 
-# Set variables that need to be changed later
+# Pre-define Variables
 airline = "None"
 website = ""
 APIKey = ""
-
-# Set lists that need to be changed later
 list = []
 websites = []
 savedAPIKeys = []
 usernames = []
 
-# Changes a variable
+# Change local variable
 def changeVar(x, y):
     if x == "website":
         global website
@@ -60,7 +58,7 @@ def changeVar(x, y):
         y = y.strip()
         APIKey = y
 
-# Reloads the list of airlines.
+# Reloads airlines.ini
 def reloadList():
     global list
     global websites
@@ -85,7 +83,7 @@ def reloadList():
     except Exception as e:
         print(e)
     
-# Converts a string to a boolean. Used by no external files
+# Converts a string to a boolean.
 def stringToBool(x):
     if x == "true":
         return True
@@ -98,10 +96,10 @@ def stringToBool(x):
     else:
         raise TypeError("Expected True, true, False, or false: not " + x)
 
-# Reload the list of airlines
+# Load airline list
 reloadList() 
 
-# Read the config file and set variables
+# Read settings
 config = configparser.ConfigParser() 
 config.read("settings.ini")
 useFSUIPC = config["DEFAULT"]["fsuipc"]

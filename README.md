@@ -5,11 +5,9 @@ ACARS system for phpVMS, powered by Python®.
 
 [Wiki](https://github.com/slimit75/xACARS/wiki)
 
-[Todo](https://github.com/slimit75/xACARS/projects/1)
+[Progress to v1.0.0 (final)](https://github.com/slimit75/xACARS/projects/1)
 
-## What do all of the files do?
-Here is a list of what they do:
-
+## What do all of the files manage?
 ```
 config.py - Handles reading the .ini files, and creates them if they do not exist
 getBid.pyw - Gets a bid from the user

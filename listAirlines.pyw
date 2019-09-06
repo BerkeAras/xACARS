@@ -2,8 +2,8 @@
 # listAirlines.pyw                          #
 # Speed_Limit75                             #
 #                                           #
-# This file manages all virtual airlines    #
-# the end user will use this program for.   #
+# This file manages adding and deleting     #
+# all virtual airlines the user logs into.  #
 # ----------------------------------------- #
 
 # Import libarys
@@ -14,8 +14,7 @@ import config as configLib
 import configparser
 
 # Define functions
-## Closes the new airline creation screen
-def terminateNewAirline():
+def terminateNewAirline(): ## Closes the new airline creation screen
     global name
     global url
     global apiKey
@@ -53,8 +52,7 @@ def terminateNewAirline():
     newAirWindow.quit()
     return
 
-## Closes the edit airline screen
-def terminateEditAirline():
+def terminateEditAirline(): ## Closes the edit airline screen
     global airline
     global name
     global url
@@ -106,8 +104,7 @@ def terminateEditAirline():
     editAirWindow.quit()
     return
 
-## Closes the delete airline screen
-def terminateDeleteAirline():
+def terminateDeleteAirline(): ## Closes the delete airline screen
     global airline
     global delAirWindow
     
@@ -161,8 +158,7 @@ def terminateDeleteAirline():
     delAirWindow.quit()
     return
 
-## New airline screen
-def new():
+def new(): ## New airline screen
     global name
     global url
     global apiKey
@@ -194,8 +190,7 @@ def new():
     newAirWindow.destroy()
     reload()
 
-## Autofill for the edit airline screen
-def editAutofill():
+def editAutofill(): ## Autofill for the edit airline screen
     global airline
     global name
     global url
@@ -215,8 +210,7 @@ def editAutofill():
     if not usernames[a] == "None Saved":
         username.set(usernames[a])
 
-## Delete iarline screen
-def delete():
+def delete(): ## Delete iarline screen
     global airline
     global name
     global url
@@ -245,8 +239,7 @@ def delete():
     delAirWindow.destroy()
     reload()
 
-## Edit screen
-def edit():
+def edit(): ## Edit screen
     global airline
     global name
     global url
@@ -288,14 +281,12 @@ def edit():
     editAirWindow.destroy()
     reload()
 
-## Closes main menu
-def quit():
+def quit(): ## Closes main menu
     global window
     window.quit()
     window.destroy()
 
-## Draw main window
-def reload():
+def reload(): ## Draws main window
     global window
     window = tk.Tk()
     window.iconbitmap('Favicon.ico')

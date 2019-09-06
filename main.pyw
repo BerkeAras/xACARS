@@ -3,8 +3,7 @@
 # Speed_Limit75                             #
 #                                           #
 # This file runs the main window, and       #
-# getBid.pyw/setupFlight.pyw will move here #
-# in the future.                            #
+# getBid.pyw will move here in the future.  #
 # ----------------------------------------- #
 
 # Import libarys
@@ -34,19 +33,6 @@ airline = tk.StringVar()
 flightTime = 0
 
 # Define functions
-def about():
-    aboutWindow = tk.Tk()
-    aboutWindow.iconbitmap('Favicon.ico')
-    aboutWindow.title('xACARS - About')
-    tk.Label(aboutWindow, text="xACARS " + config.version, font="Arial").grid(row=0, column=0)
-    tk.Label(aboutWindow, text="xACARS was developed by Speed_Limit75.").grid(row=1, column=0)
-    ttk.Separator(aboutWindow, orient=tk.HORIZONTAL).grid(row=2, column=0, sticky="we")
-    tk.Label(aboutWindow, text="This program is currently a beta, so you should expect broken things.").grid(row=3, column=0, sticky="w")
-    tk.Label(aboutWindow, text="xACARS is powered by FSUIPC/XPUIPC to gather data from the simulator.").grid(row=4, column=0, sticky="w")
-    ttk.Button(aboutWindow, text='Close', command=aboutWindow.quit).grid(row=5, column=0, sticky="we")
-    aboutWindow.mainloop()
-    aboutWindow.destroy()
-
 def Log(text):
     log.insert(tk.END, text) 
 
@@ -183,6 +169,9 @@ def preFile():
 def openWiki():
     webbrowser.open_new_tab("https://github.com/slimit75/xACARS/wiki")
 
+def issue():
+    webbrowser.open_new_tab("https://github.com/slimit75/xACARS/issues")
+
 def startFlight():
     global pirepID
     global flightTime
@@ -296,23 +285,25 @@ g = ttk.Button(window, text='Login', command=login)
 g.grid(row=1, column=0, sticky="wens")
 a = ttk.Button(window, text='Select Bid', command=setupFlight, state="disabled")
 a.grid(row=2, column=0, sticky='wens')
+g = ttk.Button(window, text='Setup Flight', command=setupFlight, state="disabled")
+g.grid(row=3, column=0, sticky='wens')
 b = ttk.Button(window, text='Pre-File', command=preFile, state="disabled")
-b.grid(row=3, column=0, sticky='wens')
+b.grid(row=4, column=0, sticky='wens')
 c = ttk.Button(window, text='Start Flight', command=startFlight, state="disabled")
-c.grid(row=4, column=0, sticky='wens')
+c.grid(row=5, column=0, sticky='wens')
 d = ttk.Button(window, text='Update Enroute Time', command=updateEnrouteTime, state="disabled")
-d.grid(row=5, column=0, sticky='wens')
+d.grid(row=6, column=0, sticky='wens')
 e = ttk.Button(window, text='Finish Flight', command=finishFlight, state="disabled")
-e.grid(row=6, column=0, sticky='wens')
+e.grid(row=7, column=0, sticky='wens')
 f = ttk.Button(window, text='File PIREP', command=filePirep, state="disabled")
-f.grid(row=7, column=0, sticky='wens')
+f.grid(row=8, column=0, sticky='wens')
 
 menu = tk.Menu(window) 
 window.config(menu=menu) 
 
 log = tk.Listbox(window, width=55, height=15)
 Log('Welcome to xACARS.') 
-log.grid(row=0, column=1, rowspan=8)
+log.grid(row=0, column=1, rowspan=9)
 Log('Please login.')
 if config.loginMessage == True:
     Log('#######################################################')
@@ -340,7 +331,7 @@ vaMenu.add_command(label='List, Edit & Add Airlines', command=editAirlines)
 
 helpMenu = tk.Menu(menu, tearoff=False)
 menu.add_cascade(label='Help', menu=helpMenu) 
-helpMenu.add_command(label='About xACARS', command=about)
+helpMenu.add_command(label='Report a Issue', command=issue)
 helpMenu.add_command(label='Simulator Connection Test', command=connectionTest)
 helpMenu.add_command(label='Wiki', command=openWiki)
 window.mainloop()
