@@ -5,7 +5,7 @@ xACARS is a ACARS system developed for phpVMS 7, powered by Python®. It support
 
 *P3D cannot be tested because I dont own it. Make sure if you have an issue to report it [here](https://github.com/slimit75/xACARS/issues/new)
 
-**Linux & macOS support is planned. Please see the linux branch for detail.
+**Linux & macOS support is planned. Please see the linux branch for details on development for Linux.
 
 [Wiki](https://github.com/slimit75/xACARS/wiki)
 
