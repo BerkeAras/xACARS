@@ -48,6 +48,19 @@ def editAirlines():
     listAirlines.reload()
     return
 
+def selBid():
+    global a
+    global b
+    global data
+
+    data = getBid.draw()
+    Log('#######################################################')
+    Log("Selected flight: " + str(data["flight"]["ident"]))
+    Log("Departs from " + str(data["flight"]["dpt_airport_id"]) + " and arrives at " + str(data["flight"]["arr_airport_id"]))
+    a.config(state="disabled")
+    b.config(state="normal")
+    return
+
 def setupFlight():
     global a
     global b
@@ -270,7 +283,7 @@ window.title('xACARS ' + config.version)
 tk.Label(window, text="Welcome to xACARS", font="Arial").grid(row=0, column=0)
 g = ttk.Button(window, text='Login', command=login)
 g.grid(row=1, column=0, sticky="wens")
-a = ttk.Button(window, text='Select Bid', command=setupFlight, state="disabled")
+a = ttk.Button(window, text='Select Bid', command=selBid, state="disabled")
 a.grid(row=2, column=0, sticky='wens')
 h = ttk.Button(window, text='Setup Flight', command=setupFlight, state="disabled")
 h.grid(row=3, column=0, sticky='wens')
